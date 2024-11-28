@@ -21,16 +21,15 @@ export interface Day {
 /**
  * Solve a day's solution
  * if input is not supplied, it will read from .inputs if available or fetch the input from the adventofcode.com,
- * fetching requires the ADVENT_OF_CODE_SESSION_COOKIE enviornment variable to be set,
- *
- * @param day - Puzzle to Solve
- * @param input - Optionally, the input for the puzzle
+ * fetching requires the ADVENT_OF_CODE_SESSION_COOKIE enviornment variable to be set
  *
  * ```ts
  * if (import.meta.main) {
  *   await Solve(puzzle);
  * }
  * ```
+ * @param day - Puzzle to Solve
+ * @param input - Optionally, the input for the puzzle
  */
 export async function Solve(day: Day, input?: string) {
   if (!input) {
@@ -42,9 +41,8 @@ export async function Solve(day: Day, input?: string) {
   }
 }
 
-const CACHE_DIR = join(Deno.cwd(), ".inputs");
-
 async function getInputForDay(year: number, day: number): Promise<string> {
+  const CACHE_DIR = join(Deno.cwd(), ".inputs");
   const cacheFile = join(CACHE_DIR, `${year}_${day}.txt`);
   try {
     await Deno.lstat(cacheFile);
