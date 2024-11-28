@@ -35,9 +35,9 @@ export async function Solve(day: Day, input?: string) {
   if (!input) {
     input = await getInputForDay(day.year, day.day);
   }
-  console.log("Part 1:", day.part1(input));
+  console.log("Part 1:", await day.part1(input));
   if (day.part2) {
-    console.log("Part 2:", day.part2(input));
+    console.log("Part 2:", await day.part2(input));
   }
 }
 
