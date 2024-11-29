@@ -19,4 +19,4 @@ jobs:
           deno-version: v2.x
 
       - name: Run tests
-        run: deno test --allow-env --allow-read=. --allow-write advent-of-code/tests.ts
+        run: deno test --allow-env --allow-read=. --allow-write ./advent-of-code/tests.ts
