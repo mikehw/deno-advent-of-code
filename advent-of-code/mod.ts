@@ -1,4 +1,5 @@
-import { join } from "@std/path";
+import { getInputForDay } from "./utils.ts";
+
 /**
  * A module providing a function for advent of code puzzles
  * @module
@@ -10,12 +11,17 @@ import { join } from "@std/path";
 export interface Day {
   /** Year of the challenge */
   year: number;
+  
   /**  Day of the challenge */
   day: number;
+  
   /** Part 1 Solution */
-  part1: (input: string) => Promise<string> | string;
+  // deno-lint-ignore no-explicit-any
+  part1: (input: string) => Promise<any> | any;
+
   /** Part 2 Solution */
-  part2?: (intput: string) => Promise<string> | string;
+  // deno-lint-ignore no-explicit-any
+  part2?: (intput: string) => Promise<any> | any;
 }
 
 /**
@@ -39,42 +45,4 @@ export async function Solve(day: Day, input?: string) {
   if (day.part2) {
     console.log("Part 2:", await day.part2(input));
   }
-}
-
-async function getInputForDay(year: number, day: number): Promise<string> {
-  const CACHE_DIR = join(Deno.cwd(), ".inputs");
-  const cacheFile = join(CACHE_DIR, `${year}_${day}.txt`);
-  try {
-    await Deno.lstat(cacheFile);
-    return await Deno.readTextFile(cacheFile);
-  } catch (err) {
-    if (!(err instanceof Deno.errors.NotFound)) {
-      throw err;
-    }
-  }
-  const session = Deno.env.get("ADVENT_OF_CODE_SESSION_COOKIE");
-  if (!session) {
-    console.error("ADVENT_OF_CODE_SESSION_COOKIE is required");
-    Deno.exit(1);
-  }
-  const headers = new Headers({
-    Cookie: `session=${session}`,
-  });
-  const resp = await fetch(
-    `https://adventofcode.com/${year}/day/${day}/input`,
-    {
-      headers,
-      credentials: "include",
-    },
-  ).catch((err) => {
-    console.error(
-      `Error fetching https://adventofcode.com/${year}/day/${day}/input: `,
-      err,
-    );
-    Deno.exit(1);
-  });
-  const data = (await resp.text()).trim();
-  await Deno.mkdir(CACHE_DIR, { recursive: true });
-  await Deno.writeTextFile(cacheFile, data);
-  return data;
 }
