@@ -1,9 +1,10 @@
 {
   "name": "@mikehw/advent-of-code",
   "exports": "./mod.ts",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "imports": {
-    "@std/path": "jsr:@std/path@^1.0.8"
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "@std/testing": "jsr:@std/testing@^1.0.5"
   },
   "license": "MIT"
 }
