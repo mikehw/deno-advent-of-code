@@ -25,6 +25,11 @@ Deno.test("2023/day-1/part-1", async () => {
   assertEquals(await puzzle.part1(input), "12");
 });
 
+Deno.test("2023/day-1/part-2", async () => {
+  const input = `hello world!`;
+  assertEquals(await puzzle.part2?.(input), undefined);
+});
+
 if (import.meta.main) {
   await Solve(puzzle);
 }

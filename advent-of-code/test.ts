@@ -2,6 +2,7 @@ import { assertEquals, assertRejects } from "@std/assert";
 import { spy, stub } from "@std/testing/mock";
 import { join } from "@std/path";
 import { getInputForDay } from "./utils.ts";
+import { Day } from "./mod.ts";
 
 Deno.test("getInputForDay", async (t) => {
   const originalEnv = Deno.env.get("ADVENT_OF_CODE_SESSION_COOKIE");
@@ -89,3 +90,21 @@ function cleanup(originalEnv: string | undefined) {
     Deno.env.delete("ADVENT_OF_CODE_SESSION_COOKIE");
   }
 }
+
+const puzzle: Day = {
+  year: 2023,
+  day: 1,
+  part1: (input: string): string => {
+    return input.length.toString();
+  },
+};
+
+Deno.test("2023/day-1/part-1", async () => {
+  const input = `hello world!`;
+  assertEquals(await puzzle.part1(input), "12");
+});
+
+Deno.test("2023/day-1/part-2", async () => {
+  const input = `hello world!`;
+  assertEquals(await puzzle.part2?.(input), undefined);
+});
