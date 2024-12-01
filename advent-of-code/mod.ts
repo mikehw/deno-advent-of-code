@@ -11,10 +11,10 @@ import { getInputForDay } from "./utils.ts";
 export interface Day {
   /** Year of the challenge */
   year: number;
-  
+
   /**  Day of the challenge */
   day: number;
-  
+
   /** Part 1 Solution */
   // deno-lint-ignore no-explicit-any
   part1: (input: string) => Promise<any> | any;

@@ -16,7 +16,9 @@ export async function getInputForDay(
   }
   const session = Deno.env.get("ADVENT_OF_CODE_SESSION_COOKIE");
   if (!session) {
-    throw new Error("ADVENT_OF_CODE_SESSION_COOKIE enviornment variable is required")
+    throw new Error(
+      "ADVENT_OF_CODE_SESSION_COOKIE enviornment variable is required",
+    );
   }
   const headers = new Headers({
     Cookie: `session=${session}`,

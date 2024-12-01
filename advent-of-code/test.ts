@@ -13,7 +13,7 @@ Deno.test("getInputForDay", async (t) => {
       Error,
       "ADVENT_OF_CODE_SESSION_COOKIE enviornment variable is required",
     );
-    cleanup(originalEnv)
+    cleanup(originalEnv);
   });
 
   await t.step("should fetch input from cache if exists", async () => {
@@ -31,7 +31,7 @@ Deno.test("getInputForDay", async (t) => {
       statStub.restore();
       readStub.restore();
     }
-    cleanup(originalEnv)
+    cleanup(originalEnv);
   });
 
   await t.step("should fetch input from web and cache", async () => {
@@ -46,7 +46,7 @@ Deno.test("getInputForDay", async (t) => {
       } as Response));
 
     const statStub = stub(Deno, "stat", () => {
-      throw new Deno.errors.NotFound;
+      throw new Deno.errors.NotFound();
     });
 
     // Spy on Deno.mkdir and Deno.writeTextFile
@@ -70,22 +70,22 @@ Deno.test("getInputForDay", async (t) => {
       );
       assertEquals(writeFileSpy.calls[0].args[1], "web fetched input");
 
-      Deno.remove(join(Deno.cwd(), ".inputs", "2023_1.txt"))
-      Deno.remove(join(Deno.cwd(), ".inputs"))
+      Deno.remove(join(Deno.cwd(), ".inputs", "2023_1.txt"));
+      Deno.remove(join(Deno.cwd(), ".inputs"));
     } finally {
       fetchStub.restore();
       statStub.restore();
       mkdirSpy.restore();
       writeFileSpy.restore();
     }
-    cleanup(originalEnv)
+    cleanup(originalEnv);
   });
 });
 
 function cleanup(originalEnv: string | undefined) {
-    if (originalEnv) {
-        Deno.env.set("ADVENT_OF_CODE_SESSION_COOKIE", originalEnv);
-      } else {
-        Deno.env.delete("ADVENT_OF_CODE_SESSION_COOKIE");
-      }
+  if (originalEnv) {
+    Deno.env.set("ADVENT_OF_CODE_SESSION_COOKIE", originalEnv);
+  } else {
+    Deno.env.delete("ADVENT_OF_CODE_SESSION_COOKIE");
+  }
 }

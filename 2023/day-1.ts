@@ -4,7 +4,7 @@ import { assertEquals } from "@std/assert";
 const puzzle: Day = {
   year: 2023,
   day: 1,
-  part1: (input: string): string => {
+  part1: (input) => {
     let sum = 0;
     for (const line of input.split("\n")) {
       const digits = line.replaceAll(/[^0-9]/g, "");
