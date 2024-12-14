@@ -1,0 +1,31 @@
+<%
+const year = it.year;
+const day = it.day;
+const paddedDay = day.toString().padStart(2, '0');
+-%>
+import { Day, Solve } from "@mikehw/advent-of-code";
+import { assert, assertEquals } from "@std/assert";
+
+const puzzle: Day = {
+  year: <%= year %>,
+  day: <%= day %>,
+  part1: (input) => {
+   
+  },
+  part2: (input) => {
+  }
+};
+
+if (import.meta.main) {
+  await Solve(puzzle);
+}
+
+Deno.test("<%= year %>/day-<%= paddedDay %>/part-1", async () => {
+  const input = ``;
+  assertEquals(await puzzle.part1(input), undefined);
+});
+
+Deno.test("<%= year %>/day-<%= paddedDay %>/part-2", async () => {
+  const input = ``;
+  assertEquals(await puzzle.part2?.(input), undefined);
+});
