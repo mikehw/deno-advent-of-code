@@ -4,7 +4,7 @@
     ".": "./mod.ts",
     "./gen": "./gen.ts"
   },
-  "version": "0.1.7",
+  "version": "0.1.8",
   "imports": {
     "@eta-dev/eta": "jsr:@eta-dev/eta@^3.5.0",
     "@std/path": "jsr:@std/path@^1.0.8",

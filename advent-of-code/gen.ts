@@ -1,5 +1,10 @@
 #!/usr/bin/env -S deno run --allow-read=. --allow-write=.
 
+/**
+* This module is a cli tool to generate template solutions
+* @module
+*/
+
 import { parseArgs } from "@std/cli";
 import { Eta } from "@eta-dev/eta";
 import { join } from "@std/path/join";
