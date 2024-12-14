@@ -49,10 +49,10 @@ Use this command to run the puzzle with your official input
 
 ## File Generator
 
-Generate the boilerplate for a puzzle with `@mikehw/advent-of-code/gen`
+Generate the boilerplate for a puzzle with `jsr:@mikehw/advent-of-code/gen`
 
 Example Usage:
-`deno run --allow-read=. --allow-write=. @mikehw/advent-of-code/gen --year 2024 --day 1`
+`deno run --allow-read=. --allow-write=. jsr:@mikehw/advent-of-code/gen --year 2024 --day 1`
 
 This will generate the file in the year directory of the current working
 directory.

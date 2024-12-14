@@ -1,13 +1,45 @@
 #!/usr/bin/env -S deno run --allow-read=. --allow-write=.
 
 /**
-* This module is a cli tool to generate template solutions
-* @module
-*/
+ * This module is a cli tool to generate template solutions
+ * @module
+ */
 
 import { parseArgs } from "@std/cli";
 import { Eta } from "@eta-dev/eta";
 import { join } from "@std/path/join";
+
+const template = `<%
+const year = it.year;
+const day = it.day;
+const paddedDay = day.toString().padStart(2, '0');
+-%>
+import { Day, Solve } from "@mikehw/advent-of-code";
+import { assertEquals } from "@std/assert";
+
+const puzzle: Day = {
+  year: <%= year %>,
+  day: <%= day %>,
+  part1: (input) => {
+  },
+  part2: (input) => {
+  }
+};
+
+if (import.meta.main) {
+  await Solve(puzzle);
+}
+
+Deno.test("<%= year %>/day-<%= paddedDay %>/part-1", async () => {
+  const input = \`\`;
+  assertEquals(await puzzle.part1(input), undefined);
+});
+
+Deno.test("<%= year %>/day-<%= paddedDay %>/part-2", async () => {
+  const input = \`\`;
+  assertEquals(await puzzle.part2?.(input), undefined);
+});
+`;
 
 async function main() {
   const args = parseArgs(Deno.args, {
@@ -64,12 +96,8 @@ deno run --allow-read=. --allow-write=. @mikehw/advent-of-code/gen --year 2024 -
     }
   }
 
-  if (!import.meta.dirname) {
-    console.error(`Unable to find templates`);
-    Deno.exit(1);
-  }
-  const eta = new Eta({ views: import.meta.dirname });
-  await Deno.writeTextFile(filePath, eta.render("./puzzle", { day, year }));
+  const eta = new Eta();
+  await Deno.writeTextFile(filePath, eta.renderString(template, { day, year }));
   console.log(`Generated File ${filePath}`);
 }
 
