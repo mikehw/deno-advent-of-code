@@ -69,7 +69,7 @@ if (import.meta.main) {
   await Solve(puzzle);
 }
 
-Deno.test("2024/day-4/part-1", async () => {
+Deno.test("2024/day-5/part-1", async () => {
   const input = `47|53
 97|13
 97|61
@@ -101,7 +101,7 @@ Deno.test("2024/day-4/part-1", async () => {
   assertEquals(await puzzle.part1(input), 143);
 });
 
-Deno.test("2024/day-4/part-2", async () => {
+Deno.test("2024/day-5/part-2", async () => {
   const input = `47|53
 97|13
 97|61

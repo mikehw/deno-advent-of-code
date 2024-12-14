@@ -103,12 +103,12 @@ if (import.meta.main) {
   await Solve(puzzle);
 }
 
-Deno.test("2024/day-4/part-1", async () => {
+Deno.test("2024/day-9/part-1", async () => {
   const input = `2333133121414131402`;
   assertEquals(await puzzle.part1(input), 1928);
 });
 
-Deno.test("2024/day-4/part-2", async () => {
+Deno.test("2024/day-9/part-2", async () => {
   const input = `2333133121414131402`;
   assertEquals(await puzzle.part2?.(input), 2858);
 });
