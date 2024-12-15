@@ -5,82 +5,87 @@ const puzzle: Day = {
   year: 2024,
   day: 10,
   part1: (input) => {
-    let trails = 0
+    let trails = 0;
     const map = input.split("\n").map((line) => line.split(""));
-    for(let r = 0; r < map.length; r++) {
-      for(let c = 0; c < map[0].length; c++) {
+    for (let r = 0; r < map.length; r++) {
+      for (let c = 0; c < map[0].length; c++) {
         if (map[r][c] !== "0") {
           continue;
         }
-        const peaks: Set<string> = new Set()
-        findPeaks(map, r, c, peaks)
+        const peaks: Set<string> = new Set();
+        findPeaks(map, r, c, peaks);
         trails += peaks.size;
       }
     }
     return trails;
   },
   part2: (input) => {
-    let trails = 0
+    let trails = 0;
     const map = input.split("\n").map((line) => line.split(""));
-    for(let r = 0; r < map.length; r++) {
-      for(let c = 0; c < map[0].length; c++) {
+    for (let r = 0; r < map.length; r++) {
+      for (let c = 0; c < map[0].length; c++) {
         if (map[r][c] !== "0") {
           continue;
         }
-        trails += findPeaks2(map, r, c)
+        trails += findPeaks2(map, r, c);
       }
     }
     return trails;
-  }
+  },
 };
 
-function findPeaks(map: string[][], row: number, col: number, peaks: Set<string>) {
-  const v = map[row][col]
+function findPeaks(
+  map: string[][],
+  row: number,
+  col: number,
+  peaks: Set<string>,
+) {
+  const v = map[row][col];
   if (v === "9") {
-     peaks.add(`${row}:${col}`)
+    peaks.add(`${row}:${col}`);
   }
 
-  const n = (parseInt(v, 10) + 1).toString()
+  const n = (parseInt(v, 10) + 1).toString();
   // up
-  if (map[row-1]?.[col] === n) {
-    findPeaks(map, row-1, col, peaks)
+  if (map[row - 1]?.[col] === n) {
+    findPeaks(map, row - 1, col, peaks);
   }
   // right
-  if (map[row]?.[col+1] === n) {
-    findPeaks(map, row, col+1, peaks)
+  if (map[row]?.[col + 1] === n) {
+    findPeaks(map, row, col + 1, peaks);
   }
   // down
-  if (map[row+1]?.[col] === n) {
-    findPeaks(map, row+1, col, peaks)
+  if (map[row + 1]?.[col] === n) {
+    findPeaks(map, row + 1, col, peaks);
   }
   // left
-  if (map[row]?.[col-1] === n) {
-    findPeaks(map, row, col-1, peaks)
+  if (map[row]?.[col - 1] === n) {
+    findPeaks(map, row, col - 1, peaks);
   }
 }
 
 function findPeaks2(map: string[][], row: number, col: number): number {
-  const v = map[row][col]
+  const v = map[row][col];
   if (v === "9") {
-     return 1
+    return 1;
   }
-  const n = (parseInt(v, 10) + 1).toString()
+  const n = (parseInt(v, 10) + 1).toString();
   let sum = 0;
   // up
-  if (map[row-1]?.[col] === n) {
-    sum += findPeaks2(map, row-1, col)
+  if (map[row - 1]?.[col] === n) {
+    sum += findPeaks2(map, row - 1, col);
   }
   // right
-  if (map[row]?.[col+1] === n) {
-    sum += findPeaks2(map, row, col+1)
+  if (map[row]?.[col + 1] === n) {
+    sum += findPeaks2(map, row, col + 1);
   }
   // down
-  if (map[row+1]?.[col] === n) {
-    sum += findPeaks2(map, row+1, col)
+  if (map[row + 1]?.[col] === n) {
+    sum += findPeaks2(map, row + 1, col);
   }
   // left
-  if (map[row]?.[col-1] === n) {
-    sum += findPeaks2(map, row, col-1)
+  if (map[row]?.[col - 1] === n) {
+    sum += findPeaks2(map, row, col - 1);
   }
   return sum;
 }
